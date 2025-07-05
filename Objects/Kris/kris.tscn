@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwyq18f0gn5kj"]
+
+[ext_resource type="Script" uid="uid://cv5xuaug8xq8p" path="res://Objects/Kris/player.gd" id="1_xdmex"]
+[ext_resource type="SpriteFrames" uid="uid://bjv2n8qiy2i7u" path="res://Objects/Kris/Overworld/spr_frames_kris_idle.tres" id="2_hilev"]
+[ext_resource type="FontFile" uid="uid://rf5oot3wlhpi" path="res://Fonts/undertale-deltarune-text-font-extended.ttf" id="3_hilev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kakuo"]
+size = Vector2(14, 4)
+
+[node name="Kris" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_xdmex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_kakuo")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
+sprite_frames = ExtResource("2_hilev")
+animation = &"down"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugLabel" type="Label" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 48.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("3_hilev")
+theme_override_font_sizes/font_size = 12

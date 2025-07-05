@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bjv2n8qiy2i7u"]
+
+[ext_resource type="Texture2D" uid="uid://dtse3gb1y5s1d" path="res://Objects/Kris/Overworld/spr_dark_kris.png" id="1_mh51u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdmex"]
+atlas = ExtResource("1_mh51u")
+region = Rect2(0, 0, 19, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kakuo"]
+atlas = ExtResource("1_mh51u")
+region = Rect2(0, 38, 19, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ragb"]
+atlas = ExtResource("1_mh51u")
+region = Rect2(0, 76, 19, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hilev"]
+atlas = ExtResource("1_mh51u")
+region = Rect2(0, 114, 19, 38)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdmex")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kakuo")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ragb")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hilev")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
