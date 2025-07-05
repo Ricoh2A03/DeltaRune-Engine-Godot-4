@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dcjmac6ihfnj4"]
+
+[ext_resource type="FontFile" uid="uid://rf5oot3wlhpi" path="res://Fonts/undertale-deltarune-text-font-extended.ttf" id="1_xvljq"]
+
+[resource]
+default_font = ExtResource("1_xvljq")
+default_font_size = 12
+Label/constants/line_spacing = -8
