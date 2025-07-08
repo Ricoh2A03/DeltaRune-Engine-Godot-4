@@ -21,14 +21,32 @@ var _camera_scene: String = "uid://c7rrg4fvt4xc7"
 var _current_scene = null
 var _current_room_size: Vector2i = Vector2i(0, 0)
 
+var _player_world_pos: Vector2i = Vector2i(0, 0)
+var _cam_mode: bool = true
 
-@onready var fade_effect: ColorRect = $FadeEffect
+var _loaded_bg_track: AudioStream = null
+
+
+@onready var fade_effect: ColorRect = $CanvasLayer/FadeEffect
 @onready var music_player = $MusicPlayer
+@onready var dialog_box: TextureRect = $CanvasLayer/DialogBox
+@onready var main_dialog_manager: DialogManager = $CanvasLayer/DialogManager
+
+
 @onready var error_label = $ErrorLabel
 
 
 func _enter_tree():
 	Globals.main = self
+	AudioServer.set_bus_volume_db(1, 0.0)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("DEBUG_toggle_bg_music"):
+		if AudioServer.get_bus_volume_db(1) == 0:
+			AudioServer.set_bus_volume_db(1, -80.0)
+		else:
+			AudioServer.set_bus_volume_db(1, 0)
 
 
 func _ready() -> void:
@@ -38,9 +56,16 @@ func _ready() -> void:
 		"\n\n\n\n\n\n\nP.S.\nAnd don't forget to take a break\nfrom time to time."
 		return
 
+	error_label.text = ""
 	player_instance = _create_player()
 	camera_instance = _create_camera()
+	_player_world_pos = Vector2i(160, 120)
 	change_scene(false, TRANSITION_SPEED_NORMAL, first_scene)
+
+
+func _process(delta: float) -> void:
+	if _cam_mode == true:
+		_cam_follow_player()
 
 
 func change_scene(fade_in: bool, duration_seconds: float, scene_path: String) -> void:
@@ -48,7 +73,6 @@ func change_scene(fade_in: bool, duration_seconds: float, scene_path: String) ->
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(fade_effect, "self_modulate", Color(0.0, 0.0, 0.0, 1.0), duration_seconds)
 		await tween.finished
-		tween.free()
 
 	if _current_scene:
 		_current_scene.queue_free()
@@ -57,8 +81,52 @@ func change_scene(fade_in: bool, duration_seconds: float, scene_path: String) ->
 	call_deferred("add_child", scene_instance)
 	_current_scene = scene_instance
 
+	player_instance.set_world_pos(_player_world_pos)
+	scene_instance.initialize_room()
+	player_instance.set_can_move(true)
+
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(fade_effect, "self_modulate", Color(0.0, 0.0, 0.0, 0.0), duration_seconds)
+
+
+#region Background Music Routines
+func load_music(audio: AudioStream) -> void:
+	_loaded_bg_track = audio
+
+
+func play_music() -> void:
+	music_player.stream = _loaded_bg_track
+	music_player.play()
+#endregion
+
+
+func dialog_started(dialog: Dialog) -> void:
+	player_instance.set_can_move(false)
+	dialog_box.show()
+	main_dialog_manager.load_dialog(dialog)
+	main_dialog_manager.show()
+	main_dialog_manager.show_dialog()
+
+
+func dialog_finished() -> void:
+	dialog_box.hide()
+	player_instance.set_can_move(true)
+	player_instance.set_dialog_state(false)
+
+
+func toggle_camera_follow(follow: bool) -> void:
+	_cam_mode = follow
+
+
+func set_camera_limits(size: Vector2i) -> void:
+	camera_instance.limit_left = 0
+	camera_instance.limit_right = size.x
+	camera_instance.limit_top = 0
+	camera_instance.limit_bottom = size.y
+
+
+func _cam_follow_player() -> void:
+	camera_instance.global_position = player_instance.global_position
 
 
 func _create_player() -> Player:

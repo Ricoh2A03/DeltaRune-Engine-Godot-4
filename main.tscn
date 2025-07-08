@@ -1,19 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx7wap6e8vvyw"]
+[gd_scene load_steps=5 format=3 uid="uid://cx7wap6e8vvyw"]
 
 [ext_resource type="Script" uid="uid://cu025t4pal62n" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Theme" uid="uid://dcjmac6ihfnj4" path="res://Themes/theme_text0.tres" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ctfjdikh3g343" path="res://dialog_manager.tscn" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bwt0klreqx736" path="res://UI/box_dark.png" id="3_h2yge"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
-
-[node name="FadeEffect" type="ColorRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-z_index = 128
-offset_right = 320.0
-offset_bottom = 240.0
-color = Color(0, 0, 0, 1)
+first_scene = "uid://dy76qre7jejsq"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -8.5
 bus = &"Music"
 
 [node name="ErrorLabel" type="Label" parent="."]
@@ -25,3 +22,25 @@ theme = ExtResource("2_0xm2m")
 text = "i hate these
 huge spaces
 between lines"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogBox" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 12.0
+offset_top = 152.0
+offset_right = 308.0
+offset_bottom = 235.0
+texture = ExtResource("3_h2yge")
+
+[node name="DialogManager" parent="CanvasLayer" instance=ExtResource("3_1bvp3")]
+visible = false
+position = Vector2(0, 160)
+
+[node name="FadeEffect" type="ColorRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 128
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

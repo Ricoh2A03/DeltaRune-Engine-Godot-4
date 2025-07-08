@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bv2lem8w1udim"
+path="res://.godot/imported/snd_closet_fall.ogg-779bb676f842c1f7de2c415b025b216d.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/[Chapter 1, Standalone]/snd_closet_fall.ogg"
+dest_files=["res://.godot/imported/snd_closet_fall.ogg-779bb676f842c1f7de2c415b025b216d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

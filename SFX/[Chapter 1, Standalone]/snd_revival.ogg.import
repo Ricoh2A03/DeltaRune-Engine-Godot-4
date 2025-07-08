@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cetkgde4f0k5e"
+path="res://.godot/imported/snd_revival.ogg-bb3daf7fd2a88c5d22d28a0d68270d41.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/[Chapter 1, Standalone]/snd_revival.ogg"
+dest_files=["res://.godot/imported/snd_revival.ogg-bb3daf7fd2a88c5d22d28a0d68270d41.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

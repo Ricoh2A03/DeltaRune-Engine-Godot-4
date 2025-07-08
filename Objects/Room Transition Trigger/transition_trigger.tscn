@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://gceedmpcmv2"]
+
+[ext_resource type="Script" uid="uid://c3f3eyjdgce5r" path="res://Objects/Room Transition Trigger/transition_trigger.gd" id="1_ei3p3"]
+
+[node name="TransitionTrigger" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_ei3p3")
+metadata/_edit_group_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

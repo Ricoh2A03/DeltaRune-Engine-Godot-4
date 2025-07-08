@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq3wbnreitv2c"]
+
+[ext_resource type="Script" uid="uid://dd0c4bvvh1ofd" path="res://Objects/Diallog Trigger/dialog_trigger.gd" id="1_ou8c5"]
+
+[node name="DialogTrig0" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_ou8c5")
+metadata/_edit_group_ = true
